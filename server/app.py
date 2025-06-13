@@ -1,11 +1,10 @@
 from flask import Flask,make_response
 from flask_migrate import Migrate
 from models import db,Student,Subject,Teacher
+from dotenv import load_dotenv
 
 app = Flask(__name__)
-
-app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://user_one:1234@localhost:5432/schooldb"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] =False
+app.config.from_prefixed_env()
 
 migrate = Migrate(app,db)
 
